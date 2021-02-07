@@ -1,22 +1,22 @@
 .. _contract-module:
 
-======================
-Smart contract modules
-======================
+=========================
+Akıllı sözleşme modülleri
+=========================
 
-Smart contracts are deployed on the chain in *smart contract modules*.
+Akıllı sözleşmeler, *akıllı sözleşme modüllerindeki* zincirde konumlandırılır.
 
-.. note::
+.. Not::
 
-   A smart contract module is often referred to simply as a *module*.
+   Sade bir biçimde akıllı bir sözleşme modülü çoğunlukla * modül * olarak adlandırılır.
 
-A module can contain one or more smart contracts, allowing code to be shared
-among the contracts and can optionally contain :ref:`contract schemas
-<contract-schema>`.
+Bir modül, kodun sözleşmeler arasında paylaşılmasına izin veren bir veya daha
+fazla akıllı sözleşme içerebilir ve opsiyonel olarak :ref:`contract schemas
+<contract-schema>` içerebilir.
 
 .. graphviz::
    :align: center
-   :caption: A smart contract module containing two smart contracts.
+   :caption: İki akıllı sözleşme içeren akıllı bir sözleşme modülü.
 
    digraph G {
        subgraph cluster_0 {
@@ -27,44 +27,43 @@ among the contracts and can optionally contain :ref:`contract schemas
        }
    }
 
-The module must be self-contained, and only have a restricted list of imports
-that allow for interaction with the chain.
-These are provided by the host environment and are available for the smart
-contract by importing a module named ``concordium``.
+Modül kendi kendine yeterli olmalıdır ve yalnızca zincirle etkileşime izin veren
+kısıtlı bir içerik listesine sahip olmalidir. Bunlar, ana bilgisayar ortamı 
+tarafından sağlanır ve ``concordium`` adlı bir modülü içe aktararak akıllı 
+sözleşme için kullanılabilirler.
 
 .. seealso::
 
    Check out :ref:`host-functions` for a complete reference.
 
-On-chain language
-=================
+Zincir üzerindek dil
+====================
 
-On the Concordium blockchain the smart contract language is a subset of `Web
-Assembly`_ (Wasm in short) which is designed to be a portable compilation
-target and to be run in sandboxed environments. This is useful because smart
-contracts will be run by bakers in the network who do not necessarily trust
-the code.
+Concordium blockchain üzerinde akıllı sözleşme dili, taşınabilir bir derleme
+hedefi olacak ve korumalı ortamlarda çalıştırılmak üzere tasarlanmış bir 
+ `Web Assembly` (kısaca Wasm) alt kümesidir. Akıllı sözleşmelerin, ağdaki 
+koda güvenmesi şart olmayan bakers tarafından yürütülecek olmasından dolayı 
+bu yararlıdır.
 
-Wasm is a low-level language and it is impractical to write by hand. Instead one
-can write smart contracts in a more high-level language which is then
-compiled to Wasm.
+Wasm düşük seviyeli bir dildir ve elle yazılması pratik değildir. Bunun yerine,
+akıllı sözleşmeler daha yüksek seviyeli bir dilde yazılabilir ve bunlar daha 
+sonra Wasm'da derlenebilir.
 
-.. _wasm-limitations:
+.. _WASM-KISITLAMALARI:
 
-Limitations
------------
+KISITLAMALAR
+------------
 
 .. todo::
 
    Add other limitations, such as start sections...
 
-The blockchain environment is very particular in the sense that each node must
-be able to execute the contract in exactly the same way, using exactly the same
-amount of resources. Otherwise nodes would fail to reach consensus on the
-state of the chain. For this reason smart contracts need to be written in a restricted
-subset of Wasm.
+Blok zinciri ortamı, her düğümün sözleşmeyi tamamen aynı yolla ve tamamen aynı
+miktarda kaynak kullanarak yürütebilmesi açısından çok özeldir. Aksi takdirde,
+düğümler zincirin durumu ile ilgili fikir birliğine konusunda başarısız olurlar.
+Bu nedenle akıllı sözleşmelerin sınırlı bir Wasm alt kümesinde yazılması gerekir.
 
-Floating point numbers
+Değişen nokta sayıları
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Although Wasm does have support for floating point numbers, a smart contract is
